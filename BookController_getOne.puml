@@ -1,0 +1,18 @@
+@startuml
+participant Actor
+Actor -> BookController : getOne
+activate BookController
+BookController -> BookService : getBookById
+activate BookService
+BookService -> BookService : λ→
+activate BookService
+BookService -> BookNotFoundException : new
+activate BookNotFoundException
+BookNotFoundException --> BookService
+deactivate BookNotFoundException
+BookService --> BookService
+deactivate BookService
+BookService --> BookController
+deactivate BookService
+return
+@enduml
